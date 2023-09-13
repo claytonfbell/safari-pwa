@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { QueryClient, QueryClientProvider } from "react-query";
+import "./App.css";
+import { ReactQueryV3 } from "./ReactQueryV3";
+import {
+  QueryClientProvider as QueryClientProviderV4,
+  QueryClient as QueryClientV4,
+} from "@tanstack/react-query";
+import { ReactQueryV4 } from "./ReactQueryV4";
+
+const queryClient = new QueryClient();
+const queryClientV4 = new QueryClientV4();
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryV3 />
+        </QueryClientProvider>
+        <QueryClientProviderV4 client={queryClientV4}>
+          <ReactQueryV4 />
+        </QueryClientProviderV4>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
