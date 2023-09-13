@@ -8,7 +8,16 @@ import {
 import { ReactQueryV4 } from "./ReactQueryV4";
 
 const queryClient = new QueryClient();
-const queryClientV4 = new QueryClientV4();
+const queryClientV4 = new QueryClientV4({
+    defaultOptions: {
+        mutations:{
+            networkMode:'always'
+        },
+        queries: {
+            networkMode:'always'
+        }
+    }
+});
 
 function App() {
   return (
